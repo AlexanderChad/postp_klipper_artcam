@@ -1,0 +1,57 @@
+; Special for Klipper (SP5)
+
+DESCRIPTION = "Klipper mm(*.gcode)"
+;
+FILE_EXTENSION = "gcode"
+;
+UNITS = MM
+;
+;
+; Cariage return - line feed at end of each line
+;
+END_OF_LINE = "[13][10]"
+;
+; Block numbering 
+;
+LINE_NUM_START     = 0
+LINE_NUM_INCREMENT = 1
+LINE_NUM_MAXIMUM   = 999999
+;
+; Set up default formating for variables
+;
+; Line numbering
+FORMAT = [N|@|N|1.0]
+; Spindle Speed
+FORMAT = [S|@|S|1.0]
+; Feed Rate
+FORMAT = [F|#|F|1.0]
+; Tool moves in x,y and z
+FORMAT = [X|#|X|1.3]
+FORMAT = [Y|#|Y|1.3]
+FORMAT = [Z|#|Z|1.3]
+; Home tool positions 
+FORMAT = [XH|@|X|1.3]
+FORMAT = [YH|@|Y|1.3]
+FORMAT = [ZH|@|Z|1.3]
+;
+; Set up program header
+;
+START = "G28"
+START = "G90"
+; G20 = Use MM as unit value
+START = "M3 [S]"
+START = "G0 [ZH] F3000"
+;
+; Program moves
+;
+FIRST_RAPID_RATE_MOVE  = "G0 [X] [Y] [Z] F3000"
+RAPID_RATE_MOVE        = "G0 [X] [Y] [Z]"
+FIRST_FEED_RATE_MOVE   = "G1 [X] [Y] [Z] [F]"
+FEED_RATE_MOVE         = "G1 [X] [Y] [Z]"
+;
+; End of file
+;
+END = "G0 [ZH]"
+END = "G1 [XH] [YH]"
+END = "M5"
+END = "M84 X Y E"
